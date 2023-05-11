@@ -18,8 +18,9 @@ logger = logging.getLogger(__name__)
 class VSCodeLauncher(Extension):
     def __init__(self):
         super().__init__()
+        self.logger.info("Inializing Extension")
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
-
+        self.subscribe(ItemEnterEvent, ItemEnterEventListener())
 
 
 class KeywordQueryEventListener(EventListener):
