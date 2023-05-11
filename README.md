@@ -1,0 +1,1 @@
+An extension for ulauncher to open vscode in a project 

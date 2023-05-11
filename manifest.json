@@ -1,0 +1,33 @@
+{
+    "required_api_version": "2",
+    "name": "Open VSCode",
+    "description": "Open vscode from both temp folder and projects folder",
+    "developer_name": "Osman Bayram (a.k.a osbm)",
+    "icon": "images/vscode-icon.png",
+    "options": {
+        "query_debounce": 0.1
+      },
+    "preferences": [
+      {
+        "id": "ext_kw",
+        "type": "keyword",
+        "name": "Extension Keyword",
+        "description": "a keyword to open extension",
+        "default_value": "c"
+      },
+      {
+        "id": "projects_folder",
+        "type": "text",
+        "name": "Projects Folder",
+        "description": "path to projects folder",
+        "default_value": "C:\\Users\\osman\\Documents\\Projects"
+      },
+      {
+        "id": "temp_projects_folder",
+        "type": "text",
+        "name": "Projects Folder",
+        "description": "path to projects folder",
+        "default_value": "C:\\Users\\osman\\Documents\\temp"
+      }
+    ]
+  }
