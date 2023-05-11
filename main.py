@@ -6,6 +6,14 @@ from ulauncher.api.shared.action.RenderResultListAction import RenderResultListA
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.action.CurrentItemAction import CurrentItemAction
 import os
+import logging
+
+logger = logging.getLogger(__name__)
+# what this line does is that it will create a logger object for us
+# and we can use it to log our messages
+# and if we want to see the logs we can use the command below
+# journalctl -f -o cat -u ulauncher.service | grep -i vscode_launcher
+
 
 class VSCodeLauncher(Extension):
     def __init__(self):
@@ -29,6 +37,9 @@ class KeywordQueryEventListener(EventListener):
         temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
         temp_projects.sort()
 
+
+        args = event.get_argument()
+        logger.info('args: %s', args)
         # get the query
         # query = event.get_argument() or str()
 
@@ -40,13 +51,14 @@ class KeywordQueryEventListener(EventListener):
         # example 
 
         
-
+        logger.info('projects: %s', projects)
+        logger.info('temp_projects: %s', temp_projects)
 
         items = []
         for i in range(5):
             items.append(ExtensionResultItem(icon='images/icon.png',
                                              name='Item %s' % i,
-                                             description='Item defdef %s' % i,
+                                             description='Item description %s' % i,
                                              on_enter=HideWindowAction()))
 
         return RenderResultListAction(items)
