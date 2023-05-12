@@ -32,7 +32,11 @@ class KeywordQueryEventListener(EventListener):
         temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
         temp_projects.sort()
 
-        [project_type, project_name] = query.split(" ")
+        if " " in query:
+            [project_type, project_name] = query.split(" ")
+        else:
+            project_type = "p"
+            project_name = ""
         # p = project
         # t = temp project
 
