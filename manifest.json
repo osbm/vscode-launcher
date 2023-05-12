@@ -20,14 +20,14 @@
         "type": "text",
         "name": "Projects Folder",
         "description": "path to projects folder",
-        "default_value": "C:\\Users\\osman\\Documents\\Projects"
+        "default_value": "/home/osman/Documents/GitHub"
       },
       {
         "id": "temp_projects_folder",
         "type": "text",
         "name": "Projects Folder",
         "description": "path to projects folder",
-        "default_value": "C:\\Users\\osman\\Documents\\temp"
+        "default_value": "/home/osman/Documents/temp"
       }
     ]
   }
