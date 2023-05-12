@@ -24,11 +24,11 @@ class KeywordQueryEventListener(EventListener):
         os.system(f'notify-send "Query:{query}"')
 
         projects_folder = extension.preferences['projects_folder']
-        # projects = [f for f in os.listdir(projects_folder) if os.path.isdir(os.path.join(projects_folder, f))]
+        projects = [f for f in os.listdir(projects_folder) if os.path.isdir(os.path.join(projects_folder, f))]
 
 
-        # temp_folder = extension.preferences['temp_projects_folder']
-        # temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
+        temp_folder = extension.preferences['temp_projects_folder']
+        temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
 
         # if " " in query:
         #     [project_type, project_name] = query.split(" ")
