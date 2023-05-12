@@ -23,42 +23,41 @@ class KeywordQueryEventListener(EventListener):
         query = event.get_argument() or str()
         os.system(f'notify-send "Query:{event}"')
 
-        projects_folder = extension.preferences['projects_folder']
-        projects = [f for f in os.listdir(projects_folder) if os.path.isdir(os.path.join(projects_folder, f))]
-        projects.sort()
+        # projects_folder = extension.preferences['projects_folder']
+        # projects = [f for f in os.listdir(projects_folder) if os.path.isdir(os.path.join(projects_folder, f))]
 
 
-        temp_folder = extension.preferences['temp_projects_folder']
-        temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
-        temp_projects.sort()
+        # temp_folder = extension.preferences['temp_projects_folder']
+        # temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
 
-        if " " in query:
-            [project_type, project_name] = query.split(" ")
-        else:
-            project_type = "p"
-            project_name = ""
-        # p = project
-        # t = temp project
+        # if " " in query:
+        #     [project_type, project_name] = query.split(" ")
+        # else:
+        #     project_type = "p"
+        #     project_name = "dotfiles"
+        # # p = project
+        # # t = temp project
 
-        if project_type == "p":
-            for i in range(5):
-                items.append(ExtensionResultItem(icon='images/icon.png',
-                                                name=f'Item {projects[0]}'',
-                                                description='Open project in vscode',
-                                                on_enter=HideWindowAction()))
 
-        elif project_type == "t":
-            for i in range(5):
-                items.append(ExtensionResultItem(icon='images/icon.png',
-                                                name=f'Item {temp_projects[0]}',
-                                                description=s'Open temp project in vscode',
-                                                on_enter=HideWindowAction()))            
+        # if project_type == "p":
+        #     for i in range(5):
+        #         items.append(ExtensionResultItem(icon='images/icon.png',
+        #                                         name=f'Item {projects[0]}'',
+        #                                         description='Open project in vscode',
+        #                                         on_enter=HideWindowAction()))
 
-        else:
-            items.append(ExtensionResultItem(icon='images/icon.png',
-                                            name="Select p or t",
-                                            description="p for project and t for temp project",
-                                            on_enter=HideWindowAction()))
+        # elif project_type == "t":
+        #     for i in range(5):
+        #         items.append(ExtensionResultItem(icon='images/icon.png',
+        #                                         name=f'Item {temp_projects[0]}',
+        #                                         description=s'Open temp project in vscode',
+        #                                         on_enter=HideWindowAction()))            
+
+        # else:
+        #     items.append(ExtensionResultItem(icon='images/icon.png',
+        #                                     name="Select p or t",
+        #                                     description="p for project and t for temp project",
+        #                                     on_enter=HideWindowAction()))
 
         return RenderResultListAction(items)
 
