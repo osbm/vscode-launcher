@@ -21,7 +21,6 @@ class KeywordQueryEventListener(EventListener):
         items = []
         # get the query
         query = event.get_argument() or str()
-        os.system(f'notify-send "Query:{query}"')
 
         projects_folder = extension.preferences['projects_folder']
         projects = [f for f in os.listdir(projects_folder) if os.path.isdir(os.path.join(projects_folder, f))]
@@ -38,6 +37,7 @@ class KeywordQueryEventListener(EventListener):
         # p = project
         # t = temp project
 
+        os.system(f'notify-send "type:{project_type} name:{project_name}"')
 
         # if project_type == "p":
         #     for i in range(5):
