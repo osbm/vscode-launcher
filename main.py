@@ -30,13 +30,13 @@ class KeywordQueryEventListener(EventListener):
         temp_folder = extension.preferences['temp_projects_folder']
         temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
 
-        # if " " in query:
-        #     [project_type, project_name] = query.split(" ")
-        # else:
-        #     project_type = "p"
-        #     project_name = "dotfiles"
-        # # p = project
-        # # t = temp project
+        if " " in query:
+            [project_type, project_name] = query.split(" ")
+        else:
+            project_type = "p"
+            project_name = "dotfiles"
+        # p = project
+        # t = temp project
 
 
         # if project_type == "p":
