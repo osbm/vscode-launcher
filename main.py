@@ -4,7 +4,7 @@ from ulauncher.api.shared.event import KeywordQueryEvent, ItemEnterEvent
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
-
+import os
 # logger = logging.getLogger(__name__)
 # to see this logging we need to use the command below
 # journalctl -f -o cat -u ulauncher.service | grep -i demo_extension
@@ -18,12 +18,29 @@ class DemoExtension(Extension):
 
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
-        # get the query
-        query = event.get_argument()
-        import os 
-        os.system(f'notify-send "{query}"')
-        
         items = []
+        # get the query
+        query = event.get_argument().strip()
+        os.system(f'notify-send "{query}"')
+
+        projects_folder = extension.preferences['projects_library']
+        projects = [f for f in os.listdir(projects_folder) if os.path.isdir(os.path.join(projects_folder, f))]
+        projects.sort()
+
+
+        temp_folder = extension.preferences['temp_folder']
+        temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
+        temp_projects.sort()
+        
+        if query[0] == "":
+            # we should give the user list of projects
+            for i in range(5):
+                items.append(ExtensionResultItem(icon='images/icon.png',
+                                                name='Item %s' % i,
+                                                description=f'itemm {projects[0]}',
+                                                on_enter=HideWindowAction()))
+
+
         for i in range(5):
             items.append(ExtensionResultItem(icon='images/icon.png',
                                              name='Item %s' % i,
