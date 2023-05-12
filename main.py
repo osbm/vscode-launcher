@@ -17,8 +17,12 @@ class DemoExtension(Extension):
 
 
 class KeywordQueryEventListener(EventListener):
-
     def on_event(self, event, extension):
+        # get the query
+        query = event.get_argument()
+        with open('~/log.txt', 'w') as f:
+            f.write(query)
+        
         items = []
         for i in range(5):
             items.append(ExtensionResultItem(icon='images/icon.png',
