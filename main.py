@@ -13,7 +13,6 @@ class DemoExtension(Extension):
 
     def __init__(self):
         super().__init__()
-        logger.info("Inializing Extension")
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
 
 
