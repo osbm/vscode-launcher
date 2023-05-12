@@ -20,8 +20,8 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         # get the query
         query = event.get_argument()
-        with open('~/log.txt', 'w') as f:
-            f.write(query)
+        import os 
+        os.system(f'notify-send "{query}"')
         
         items = []
         for i in range(5):
