@@ -31,21 +31,30 @@ class KeywordQueryEventListener(EventListener):
         temp_folder = extension.preferences['temp_projects_folder']
         temp_projects = [f for f in os.listdir(temp_folder) if os.path.isdir(os.path.join(temp_folder, f))]
         temp_projects.sort()
-        
-        if query[0] == "":
-            # we should give the user list of projects
+
+        [project_type, project_name] = query.split(" ")
+        # p = project
+        # t = temp project
+
+        if project_type == "p":
             for i in range(5):
                 items.append(ExtensionResultItem(icon='images/icon.png',
-                                                name='Item %s' % i,
-                                                description=f'itemm {projects[0]}',
+                                                name=f'Item {projects[0]}'',
+                                                description='Open project in vscode',
                                                 on_enter=HideWindowAction()))
 
+        elif project_type == "t":
+            for i in range(5):
+                items.append(ExtensionResultItem(icon='images/icon.png',
+                                                name=f'Item {temp_projects[0]}',
+                                                description=s'Open temp project in vscode',
+                                                on_enter=HideWindowAction()))            
 
-        for i in range(5):
+        else:
             items.append(ExtensionResultItem(icon='images/icon.png',
-                                             name='Item %s' % i,
-                                             description='Item description %s' % i,
-                                             on_enter=HideWindowAction()))
+                                            name="Select p or t",
+                                            description="p for project and t for temp project",
+                                            on_enter=HideWindowAction()))
 
         return RenderResultListAction(items)
 
