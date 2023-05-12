@@ -57,7 +57,7 @@ class KeywordQueryEventListener(EventListener):
                                                 on_enter=partial(open_vscode, project)))
         
     
-        return RenderResultListAction(items)
+        return RenderResultListAction(items[:5])
 
 if __name__ == '__main__':
     DemoExtension().run()
