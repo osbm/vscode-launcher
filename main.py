@@ -5,6 +5,7 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 import os
+from functools import partial
 # logger = logging.getLogger(__name__)
 # to see this logging we need to use the command below
 # journalctl -f -o cat -u ulauncher.service | grep -i demo_extension
@@ -15,6 +16,8 @@ class DemoExtension(Extension):
         super().__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
 
+def open_vscode(project_name):
+    os.system(f"code --new-window {project_name}")
 
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
@@ -39,26 +42,21 @@ class KeywordQueryEventListener(EventListener):
 
         os.system(f'notify-send "type:{project_type} name:{project_name}"')
 
-        # if project_type == "p":
-        #     for i in range(5):
-        #         items.append(ExtensionResultItem(icon='images/icon.png',
-        #                                         name=f'Item {projects[0]}'',
-        #                                         description='Open project in vscode',
-        #                                         on_enter=HideWindowAction()))
+        if project_type == "t":
+            for temp_project in temp_projects:                
+                items.append(ExtensionResultItem(icon='images/icon.png',
+                                                name=temp_project,
+                                                description='Open project in vscode',
+                                                on_enter=partial(open_vscode, temp_project)))
 
-        # elif project_type == "t":
-        #     for i in range(5):
-        #         items.append(ExtensionResultItem(icon='images/icon.png',
-        #                                         name=f'Item {temp_projects[0]}',
-        #                                         description=s'Open temp project in vscode',
-        #                                         on_enter=HideWindowAction()))            
-
-        # else:
-        #     items.append(ExtensionResultItem(icon='images/icon.png',
-        #                                     name="Select p or t",
-        #                                     description="p for project and t for temp project",
-        #                                     on_enter=HideWindowAction()))
-
+        else:
+            for project in projects:
+                items.append(ExtensionResultItem(icon='images/icon.png',
+                                                name=project,
+                                                description='Open project in vscode',
+                                                on_enter=partial(open_vscode, project)))
+        
+    
         return RenderResultListAction(items)
 
 if __name__ == '__main__':
