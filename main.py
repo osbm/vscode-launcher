@@ -5,7 +5,7 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 # to see this logging we need to use the command below
 # journalctl -f -o cat -u ulauncher.service | grep -i demo_extension
 
